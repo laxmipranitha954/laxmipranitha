@@ -65,7 +65,7 @@ This project focuses on enhancing medical images, specifically MRIs, by reducing
 ## Work Experience
 
 ### IT Infrastructure System Administrator - Hitachi Vantara
-Duration: Aug 2022 - Jul 2023  
+Duration: Jan 2022 - Jul 2023  
 Location: Hyderabad, India
 
 As an IT Infrastructure System Administrator, I provided support for over 1000 users across the organization, primarily managing Microsoft services and cloud technologies. Some key achievements include:

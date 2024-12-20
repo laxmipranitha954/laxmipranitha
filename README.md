@@ -20,11 +20,39 @@ Welcome to my GitHub! 👩‍💻
 - Medical Image Enhancement using Genetic Algorithm 🏥
 
 ## Skills
-- 🧑‍💻 Languages: Python, Java, SQL, C++, PHP
-- 🌐 Web Technologies: HTML, CSS
-- ☁️ Clou Technologiesd:Microsoft Exchange, Microsoft AAzure, Office 365, ctive Directory
-- 🛠️ Tools: Git, GitHub, PowerShell, Jupyter
-- 🗃️ Databases: MySQL, SQL Server
+
+###Languages
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python" width="100" />
+  <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=java&logoColor=white" alt="Java" width="100" />
+  <img src="https://img.shields.io/badge/SQL-4479A1?style=flat&logo=mysql&logoColor=white" alt="SQL" width="100" />
+  <img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white" alt="C++" width="100" />
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white" alt="PHP" width="100" />
+</p>
+
+### Web Development
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML" width="100" />
+  <img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS" width="100" />
+</p>
+
+### Cloud & Databases
+<p align="center">
+  <img src="https://img.shields.io/badge/Microsoft_Azure-0089D6?style=flat&logo=microsoft-azure&logoColor=white" alt="Azure" width="100" />
+  <img src="https://img.shields.io/badge/Office_365-0078D4?style=flat&logo=microsoft-office&logoColor=white" alt="Office 365" width="100" />
+  <img src="https://img.shields.io/badge/Active_Directory-008AD7?style=flat&logo=windows&logoColor=white" alt="Active Directory" width="100" />
+  <img src="https://img.shields.io/badge/Microsoft_Exchange-0078D4?style=flat&logo=microsoft&logoColor=white" alt="Microsoft Exchange" width="100" />
+  <img src="https://img.shields.io/badge/SQL_Server-CC2927?style=flat&logo=microsoft-sql-server&logoColor=white" alt="SQL Server" width="100" />
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL" width="100" />
+</p>
+
+### Tools
+<p align="center">
+  <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white" alt="Git" width="100" />
+  <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub" width="100" />
+  <img src="https://img.shields.io/badge/PowerShell-2CA5E0?style=flat&logo=powershell&logoColor=white" alt="PowerShell" width="100" />
+  <img src="https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white" alt="Jupyter" width="100" />
+</p>
 
 ## Contact
 - ✉ Email: [sareddypranitha@gmail.com](mailto:sareddypranitha@gmail.com)

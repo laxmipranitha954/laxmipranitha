@@ -9,7 +9,7 @@ Welcome to my portfolio! I am Laxmi Pranitha Sareddy, a Masters graduate student
   - [Facial Expression Recognition](#facial_expression_recognition_genetic_algorithm)
   - [Medical Image Enhancement Using Genetic Algorithm](#medical-image-enhancement-using-genetic-algorithm)
 - [Work Experience](#work-experience)
-  - [IT Infrastructure System Administrator - Hitachi Vantara](#it-infrastructure-system-administrator---hitachi-vantara)
+  - [IT Infrastructure System Administrator Associate - Hitachi Vantara](#it-infrastructure-system-administrator-associate---hitachi-vantara)
 - [Certifications](#certifications)
 - [Contact](#contact)
 
@@ -39,7 +39,7 @@ DocInsight is a healthcare platform designed to collect and visualize data on ov
 
 [Visit the Project](projects/docinsight)
 
-### EVOLUTIONARY ALGORITHM BASED FEATURE SELECTION AND FUSION FOR FACIAL EXPRESSION RECOGNITION
+### Evolutionary Algorithm Based Feature Selection And Fusion For Facial Expression Recognition
 Technologies: Python, OpenCV, Scikit-learn, Genetic Algorithms
 
 This project uses machine learning and genetic algorithms to classify facial expressions such as happiness, sadness, and anger with high accuracy.
@@ -64,7 +64,7 @@ This project focuses on enhancing medical images, specifically MRIs, by reducing
 
 ## Work Experience
 
-### IT Infrastructure System Administrator - Hitachi Vantara
+### IT Infrastructure System Administrator Associate- Hitachi Vantara
 Duration: Jan 2022 - Jul 2023  
 Location: Hyderabad, India
 

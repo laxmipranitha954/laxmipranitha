@@ -1,0 +1,14 @@
+1) Install python (tested on 3.6.6 version)
+
+2) Install the following libraries
+numpy
+geneticalgorithm
+matplotlib
+pillow
+opencv-python
+scikit-image
+image-similarity-measures
+ 
+3) Install pycharm professional edition
+
+4) Run main.py file

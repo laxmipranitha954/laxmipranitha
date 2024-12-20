@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Gill Sans, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #3F9796;
+      background-image: url('stethoscopewithdocinsight.jpeg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% auto;
+      background-position: center;
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #search-form {
+      background-color: #fff;
+      padding: 60px;
+      border-radius: 50px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    select, input {
+      margin-bottom: 0px;
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+      max-width: 300px; 
+    }
+
+    .button {
+      background-color: #e7e7e7;
+      font-size: 20px;
+    }
+
+    #hospital-search, #doctor-search, #specialization-search {
+      display: none;
+      text-align: left; /* Align labels to the left */
+    }
+
+    #go-button {
+      margin-top: 20px; /* Add margin to separate the "Go" button from the select dropdowns */
+    }
+  </style>
+</head>
+<body>
+
+  <div id="search-form">
+    <!-- Primary search bar -->
+    <select id="primary-search" onchange="showSearchOptions()">
+      <option value="" disabled selected>Select...</option>
+      <!-- <option value="hospital">Hospital</option> -->
+      <option value="doctor">Doctor</option>
+      <option value="specialization">Specialization</option>
+    </select>
+
+    <!-- Hospital search bar -->
+    <div id="hospital-search">
+      <label for="hospital-dropdown">Select Hospital:</label>
+      <select id="hospital-dropdown">
+        <option value="hospital1">Hospital 1</option>
+        <option value="hospital2">Hospital 2</option>
+        <option value="hospital3">Hospital 3</option>
+      </select>
+    </div>
+
+    <!-- Doctor search bar -->
+    <div id="doctor-search">
+      <label for="doctor-dropdown">Select Doctor:</label>
+      <select id="doctor-dropdown">
+        <!-- Doctors will be dynamically added here -->
+      </select>
+    </div>
+
+    <!-- Specialization search bar -->
+    <div id="specialization-search">
+      <label for="specialization-dropdown">Select Specialization:</label>
+      <select id="specialization-dropdown" onchange="populateDoctorsBySpecialization(this.value)">
+        <!-- Specializations will be dynamically added here -->
+      </select>
+    </div>
+
+    <!-- Go button -->
+    <button class="button" id="go-button" onclick="search()">Go</button>
+  </div>
+
+  <script>
+    // Define the doctors data (you can fetch this from an external source)
+    var doctorsData = [
+    { id: '1', name: 'Dr. Emily Roberts', specialization: 'Pediatrics' },
+      { id: '2', name: 'Dr. Michael Thompson', specialization: 'General Surgery' },
+      { id: '3', name: 'Dr. Sarah Lee', specialization: 'Pediatrics' },
+      { id: '4', name: 'Dr. David Wilson', specialization: 'Cardiology' },
+      { id: '5', name: 'Dr. Jessica Chen', specialization: 'Pediatrics' },
+      { id: '6', name: 'Dr. Robert Anderson', specialization: 'Orthopedics' },
+      { id: '7', name: 'Dr. Amanda Taylor', specialization: 'Psychiatry' },
+      { id: '8', name: 'Dr. Christopher Lee', specialization: 'Oncology' },
+      { id: '9', name: 'Dr. Samantha Brown', specialization: 'Endocrinology' },
+      { id: '10', name: 'Dr. William Davis', specialization: 'Cardiology' },
+      { id: '11', name: 'Dr. Sophia Martinez', specialization: 'Dermatology' },
+      { id: '12', name: 'Dr. Andrew White', specialization: 'Psychiatry' },
+{ id: '13', name: 'Dr. Olivia Johnson', specialization: 'Cardiology' },
+{ id: '14', name: 'Dr. Ethan Harris', specialization: 'Pediatrics' },
+{ id: '15', name: 'Dr. Isabella Wilson', specialization: 'Ophthalmology' },
+{ id: '16', name: 'Dr. Jacob Moore', specialization: 'Cardiology' },
+{ id: '17', name: 'Dr. Ava Thompson', specialization: 'Pediatrics' },
+{ id: '18', name: 'Dr. Liam Clark', specialization: 'Endocrinology' },
+{ id: '19', name: 'Dr. Zoe King', specialization: 'Cardiology' },
+{ id: '20', name: 'Dr. Lucas Anderson', specialization: 'Oncology' },
+
+      // Add more doctor data as needed
+    ];
+
+    // Function to populate the Doctor dropdown based on the selected option
+    function populateDoctors(selectedOption) {
+  var doctorDropdown = document.getElementById('doctor-dropdown');
+  doctorDropdown.innerHTML = ''; // Clear previous options
+
+  // Loop through all doctors and add them to the dropdown
+  doctorsData.forEach(function(doctor) {
+    var option = document.createElement('option');
+    option.value = doctor.id;
+    option.textContent = doctor.name;
+    doctorDropdown.appendChild(option);
+  });
+
+  // Show the Doctor search bar
+  document.getElementById('doctor-search').style.display = 'block';
+}
+
+
+
+
+// Function to populate the Doctor dropdown based on the selected specialization
+// Function to populate the Doctor dropdown based on the selected specialization
+function populateDoctorsBySpecialization(selectedSpecialization) {
+  var doctorDropdown = document.getElementById('doctor-dropdown');
+  doctorDropdown.innerHTML = ''; // Clear previous options
+
+  // Filter doctors based on the selected specialization
+  var doctorsWithSpecialization = doctorsData.filter(function(doctor) {
+    return doctor.specialization.toLowerCase() === selectedSpecialization.toLowerCase();
+  });
+
+  // Add filtered doctors to the dropdown
+  doctorsWithSpecialization.forEach(function(doctor) {
+    var option = document.createElement('option');
+    option.value = doctor.id;
+    option.textContent = doctor.name;
+    doctorDropdown.appendChild(option);
+  });
+
+  // Show the Doctor search bar
+  document.getElementById('doctor-search').style.display = 'block';
+}
+
+
+// Update the showSearchOptions function to call populateSpecializations when "Specialization" is selected
+// Update the showSearchOptions function to call populateSpecializations when "Specialization" is selected
+function showSearchOptions() {
+  var primarySearch = document.getElementById('primary-search');
+  var selectedOption = primarySearch.options[primarySearch.selectedIndex].value;
+
+  // Show/hide search bars based on the selected option
+  document.getElementById('hospital-search').style.display = 'none';
+  document.getElementById('doctor-search').style.display = 'none';
+  document.getElementById('specialization-search').style.display = 'none';
+
+  if (selectedOption === 'hospital') {
+    document.getElementById('hospital-search').style.display = 'block';
+  } else if (selectedOption === 'doctor') {
+    populateDoctors('1'); // Default to the first doctor for demonstration
+  } else if (selectedOption === 'specialization') {
+    populateSpecializations(); // Populate the Specialization dropdown
+    // populateDoctorsBySpecialization(); // Populate the Doctor dropdown based on selected specialization
+    document.getElementById('specialization-search').style.display = 'block';
+  }
+}
+
+
+function redirectToDoctor(doctorId) {
+      window.location.href = `doctor1.html?id=${doctorId}`;
+    }
+
+    // Update the search function to handle doctor redirection
+    function search() {
+  var primarySearch = document.getElementById('primary-search');
+  var selectedOption = primarySearch.options[primarySearch.selectedIndex].value;
+
+  if (selectedOption === 'doctor') {
+    var doctorDropdown = document.getElementById('doctor-dropdown');
+    var selectedDoctorId = doctorDropdown.value;
+    redirectToDoctor(selectedDoctorId);
+  } else if (selectedOption === 'specialization') {
+    var doctorDropdown = document.getElementById('doctor-dropdown');
+    var selectedDoctorId = doctorDropdown.value;
+    if (selectedDoctorId) {
+      redirectToDoctor(selectedDoctorId);
+    } else {
+      alert('Please select a doctor from the list.');
+    }
+  } else {
+    // Implement other search functionality here
+  }
+}
+// Function to populate the Specialization dropdown
+function populateSpecializations() {
+  var specializationDropdown = document.getElementById('specialization-dropdown');
+  specializationDropdown.innerHTML = ''; // Clear previous options
+
+  // Define the available specializations
+  var specializations = Array.from(new Set(doctorsData.map(doctor => doctor.specialization)));
+
+  // Add specializations to the dropdown
+  specializations.forEach(function(specialization) {
+    var option = document.createElement('option');
+    option.value = specialization.toLowerCase(); // Use lowercase for consistency
+    option.textContent = specialization;
+    specializationDropdown.appendChild(option);
+  });
+  
+}
+  </script>
+</body>
+</html>

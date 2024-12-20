@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Reviews</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f8f8;
+    }
+
+    .review-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .review-header {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .review-content {
+      margin-bottom: 15px;
+    }
+
+    .review-rating {
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    .review-form {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group button {
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overall-rating">
+    <h2>Overall Rating</h2>
+    <p><strong>Average Rating:</strong> 4.5/5</p>
+    <!-- You can display other overall rating information here -->
+  </div>
+
+  <div id="reviews-list">
+    <div class="review-container">
+      <h2 class="review-header">Patient Review 1</h2>
+      <p class="review-rating">Rating: 5/5</p>
+      <p class="review-content">Dr. John Doe is an exceptional cardiologist. He provided detailed explanations of my condition
+        and treatment options. Highly recommended!</p>
+    </div>
+
+    <div class="review-container">
+      <h2 class="review-header">Patient Review 2</h2>
+      <p class="review-rating">Rating: 4/5</p>
+      <p class="review-content">Dr. Doe's expertise in cardiology is evident. However, wait times for appointments can be a bit
+        long.</p>
+    </div>
+
+    <!-- Add more review containers as needed -->
+
+  </div>
+
+  <!-- Review Form -->
+  <div class="review-form">
+    <h2>Add a New Review</h2>
+    <form id="new-review-form">
+      <div class="form-group">
+        <label for="rating">Rating (out of 5):</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required>
+      </div>
+      <div class="form-group">
+        <label for="review">Review:</label>
+        <textarea id="review" name="review" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit Review</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('new-review-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const rating = document.getElementById('rating').value;
+      const review = document.getElementById('review').value;
+
+      // Clear form fields
+      document.getElementById('rating').value = '';
+      document.getElementById('review').value = '';
+
+      // Create new review element
+      const newReview = document.createElement('div');
+      newReview.classList.add('review-container');
+      newReview.innerHTML = `
+        <h2 class="review-header">New Review</h2>
+        <p class="review-rating">Rating: ${rating}/5</p>
+        <p class="review-content">${review}</p>
+      `;
+
+      // Append new review to reviews list
+      document.getElementById('reviews-list').appendChild(newReview);
+    });
+  </script>
+</body>
+
+</html>

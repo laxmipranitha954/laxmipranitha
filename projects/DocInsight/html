@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocInsight - Home</title>
+    <style>
+        body {
+            font-family: Gill Sans, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3F9796;
+        }
+
+        header {
+            background-color: #333;
+            padding: 0px;
+            text-align: center;
+            color: white;
+        }
+        .button
+        {
+            background-color: #e7e7e7;
+            font-size: 20px;
+            
+        }
+        main {
+            padding: 200px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #000504;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>DocInsight</h1>
+    </header>
+
+    <main>
+        <h1 style="font-size: 50px">Welcome to DocInsight</h1>
+        <h2>Informed Doctor Selection</h2>
+        <button onclick="location.href='search.html'" class="button">Start</button>
+    </main>
+
+</body>
+
+</html>

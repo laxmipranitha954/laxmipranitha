@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+            font-family: Gill Sans, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3F9796;
+            background-image: url('stethoscope.jpeg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% auto;
+            background-position: center;
+            width: 100%;
+            height: auto;
+        }
+
+    .doctor-details {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #f8f8f8;
+    }
+    .doctor-info {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+    }
+
+    .doctor-photo {
+      max-width: 100%;
+      height: 200px;
+      border-radius: 8px;
+    }
+
+    .doctor-description {
+      margin-top: 20px;
+    }
+
+    .doctor-contact,
+    .doctor-background,
+    .doctor-reviews {
+      margin-top: 10px;
+      display: block;
+      text-decoration: none;
+      color: #333;
+    }
+    .doctor-contact,
+    .doctor-background,
+    .doctor-reviews {
+      color: #007bff;
+    }
+    /* Style for the "Read Reviews" link */
+    .read-reviews-link {
+      text-decoration: none; /* Remove underline */
+      color: #007bff; /* Set link color */
+      cursor: pointer; /* Show pointer cursor on hover */
+    }
+
+    .read-reviews-link:hover {
+      text-decoration: underline; /* Underline on hover */
+    }
+     /* Style for the graph container */
+     #patientsGraphContainer {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="doctor-info" id="doctor-info">
+    <!-- Doctor details will be dynamically added here -->
+  </div>
+  <!-- Graph container -->
+  <div id="patientsGraphContainer">
+    <canvas id="patientsGraph" width="800" height="400"></canvas>
+  </div>
+
+ <!-- <div class="read-reviews-link" onclick="navigateToReviews(${doctorId})">Read Reviews</div> -->
+  <script>
+    // Define the doctors data
+    var doctorsData = [
+       { 
+        id: 1, 
+        name: 'Dr. Emily Roberts', 
+        specialization: 'Pediatrics',
+        description: 'Highly skilled and compassionate pediatrician with a focus on preventive care.',
+        experience: 12,
+        education: 'M.D., Harvard Medical School',
+        contact: 'emily.roberts@hospital.com, 555-0123',
+        image: 'emily.jpeg', 
+        surgicalOutcomes: {
+      easy: '98% success rate',
+      medium: '92% success rate',
+      hard: '85% success rate'
+    }
+      },
+      { 
+        id: 2, 
+        name: 'Dr. Michael Thompson', 
+        specialization: 'General Surgery',
+        description: 'Expert in minimally invasive surgical techniques for various conditions.',
+        experience: 18,
+        education: 'M.D., Johns Hopkins University',
+        contact: 'michael.thompson@surgicalcenter.org, 555-4567',
+        image: 'Michael.jpeg', 
+        surgicalOutcomes: {
+      easy: '95% success rate',
+      medium: '90% success rate',
+      hard: '90% success rate'
+    }
+      },
+      { 
+        id: 3, 
+        name: 'Dr. Sarah Lee', 
+        specialization: 'Pediatrics',
+        description: 'Dr. Sarah is a dedicated pediatrician with 8 years of experience, focusing on preventive care and personalized treatment for children. Her compassionate approach and expertise ensure comprehensive healthcare for young patients and support for their families.',
+        experience: 8,
+        education: 'M.D., University of California, Los Angeles',
+        contact: 'sarahlee@dermatologyclinic.com, 555-8901',
+        image: 'sarah.jpeg', 
+        surgicalOutcomes: {
+      easy: '88% success rate',
+      medium: '82% success rate',
+      hard: '90% success rate'
+    }
+      },
+      { 
+        id: 4, 
+        name: 'Dr. David Wilson', 
+        specialization: 'Cardiology',
+        description: 'Experienced cardiologist with expertise in diagnosing and treating heart-related issues.',
+        experience: 15,
+        education: 'M.D., Stanford University',
+        contact: 'david.wilson@heartcenter.net, 555-2345',
+        image: 'David.jpeg', 
+        surgicalOutcomes: {
+      easy: '96% success rate',
+      medium: '92% success rate',
+      hard: '86% success rate'
+    }
+      
+      },
+      { 
+        id: 5, 
+        name: 'Dr. Jessica Chen', 
+        specialization: 'Pediatrics',
+        description: 'Dr. Jessica is a renowned pediatric specialist known for her empathetic care and innovative approaches to child health. With a strong emphasis on family involvement and community education, she strives to create a nurturing environment for childrens well-being and development.',
+        experience: 10,
+        education: 'M.D., University of Pennsylvania',
+        contact: 'jessica.chen@womenshealth.org, 555-6789',
+        image: 'jessica.jpeg', 
+        surgicalOutcomes: {
+      easy: '92% success rate',
+      medium: '95% success rate',
+      hard: '88% success rate'
+    }
+      
+      },
+      { 
+        id: 6, 
+        name: 'Dr. Robert Anderson', 
+        specialization: 'Orthopedics',
+        description: 'Highly regarded orthopedic surgeon specializing in joint replacements and sports injuries.',
+        experience: 20,
+        education: 'M.D., Columbia University',
+        contact: 'robert.anderson@orthocenter.com, 555-9012',
+        image: 'Robert.jpeg', 
+        surgicalOutcomes: {
+      easy: '88% success rate',
+      medium: '90% success rate',
+      hard: '92% success rate'
+    }
+      
+      },
+      { 
+        id: 7, 
+        name: 'Dr. Amanda Taylor', 
+        specialization: 'Psychiatry',
+        description: 'Experienced psychiatrist with expertise in treating anxiety, depression, and other mental health conditions.',
+        experience: 14,
+        education: 'M.D., Yale University',
+        contact: 'amanda.taylor@mentalhealth.org, 555-3456',
+        image: 'amanda.jpeg', 
+        surgicalOutcomes: {
+      easy: '96% success rate',
+      medium: '92% success rate',
+      hard: '88% success rate'
+    }
+      
+      },
+      { 
+        id: 8, 
+        name: 'Dr. Christopher Lee', 
+        specialization: 'Oncology',
+        description: 'Dedicated oncologist with a focus on personalized cancer treatment plans.',
+        experience: 16,
+        education: 'M.D., University of Michigan',
+        contact: 'christopher.lee@cancercenter.net, 555-7890',
+        image: 'Christopher.jpeg', 
+        surgicalOutcomes: {
+      easy: '94% success rate',
+      medium: '88% success rate',
+      hard: '85% success rate'
+    }
+      
+      },
+      { 
+        id: 9, 
+        name: 'Dr. Samantha Brown', 
+        specialization: 'Endocrinology',
+        description: 'Skilled endocrinologist specializing in the diagnosis and treatment of hormonal imbalances.',
+        experience: 11,
+        education: 'M.D., University of Texas',
+        contact: 'samantha.brown@endoclinic.org, 555-2468',
+        image: 'samantha.jpeg', 
+        surgicalOutcomes: {
+      easy: '96% success rate',
+      medium: '93% success rate',
+      hard: '89% success rate'
+    }
+      
+      },
+      { 
+        id: 10, 
+        name: 'Dr. William Davis', 
+        specialization: 'Cardiology',
+        description: 'Dr. William is an experienced cardiologist with 19 years of practice, specializing in the diagnosis and treatment of heart-related issues. His expertise in cardiac care and commitment to personalized treatment plans ensure optimal heart health for his patients.',
+        experience: 19,
+        education: 'M.D., University of California, San Francisco',
+        contact: 'william.davis@kidneycenter.com, 555-8024',
+        image: 'William.jpeg', 
+        surgicalOutcomes: {
+      easy: '91% success rate',
+      medium: '90% success rate',
+      hard: '89% success rate'
+    }
+      
+      },
+      { 
+  id: 11, 
+  name: 'Dr. Sophia Martinez', 
+  specialization: 'Dermatology',
+  description: 'Dr. Sophia is a dedicated dermatologist with 15 years of experience, focusing on diagnosing and treating skin conditions. Her compassionate approach and advanced techniques ensure effective skincare solutions for her patients.',
+  experience: 15,
+  education: 'M.D., University of Miami',
+  contact: 'sophia.martinez@dermaclinic.com, 555-9087',
+  image: 'Sophia.jpeg', 
+  surgicalOutcomes: {
+    easy: '95% success rate',
+    medium: '93% success rate',
+    hard: '91% success rate'
+  }
+},
+{ 
+  id: 12, 
+  name: 'Dr. Andrew White', 
+  specialization: 'Psychiatry',
+  description: 'Dr. Andrew is a compassionate psychiatrist with a focus on mental health and well-being. With 12 years of experience, he provides comprehensive evaluations and personalized treatment plans to support his patients.',
+  experience: 12,
+  education: 'M.D., Johns Hopkins University',
+  contact: 'andrew.white@mindwellness.com, 555-7210',
+  image: 'Andrew.jpeg', 
+  surgicalOutcomes: {
+    easy: '89% success rate',
+    medium: '88% success rate',
+    hard: '85% success rate'
+  }
+},
+{ 
+  id: 13, 
+  name: 'Dr. Olivia Johnson', 
+  specialization: 'Cardiology',
+  description: 'Dr. Olivia is a skilled cardiologist with 18 years of practice, specializing in heart disease prevention and treatment. Her patient-centered approach and expertise in cardiac care ensure the best outcomes for her patients.',
+  experience: 18,
+  education: 'M.D., Stanford University',
+  contact: 'olivia.johnson@heartcarecenter.com, 555-6543',
+  image: 'Olivia.jpeg', 
+  surgicalOutcomes: {
+    easy: '93% success rate',
+    medium: '91% success rate',
+    hard: '89% success rate'
+  }
+},
+{ 
+  id: 14, 
+  name: 'Dr. Ethan Harris', 
+  specialization: 'Pediatrics',
+  description: 'Dr. Ethan is a compassionate pediatrician with a focus on children\'s health and wellness. With 14 years of experience, he provides comprehensive care and supports families in navigating their child\'s healthcare needs.',
+  experience: 14,
+  education: 'M.D., Harvard Medical School',
+  contact: 'ethan.harris@kidsfirstclinic.com, 555-4268',
+  image: 'Ethan.jpeg', 
+  surgicalOutcomes: {
+    easy: '94% success rate',
+    medium: '92% success rate',
+    hard: '91% success rate'
+  }
+},
+{ 
+  id: 15, 
+  name: 'Dr. Isabella Wilson', 
+  specialization: 'Ophthalmology',
+  description: 'Dr. Isabella is a skilled ophthalmologist specializing in eye care and vision correction. With 16 years of experience, she offers advanced treatments and personalized vision care to improve her patients\' quality of life.',
+  experience: 16,
+  education: 'M.D., University of Pennsylvania',
+  contact: 'isabella.wilson@eyecarecenter.com, 555-3098',
+  image: 'Isabella.jpeg', 
+  surgicalOutcomes: {
+    easy: '94% success rate',
+    medium: '92% success rate',
+    hard: '90% success rate'
+  }
+},
+{ 
+  id: 16, 
+  name: 'Dr. Jacob Moore', 
+  specialization: 'Cardiology',
+  description: 'Dr. Jacob is a dedicated cardiologist with 17 years of experience, specializing in heart disease management and treatment. His comprehensive approach and focus on patient education ensure positive outcomes for his patients.',
+  experience: 17,
+  education: 'M.D., Yale University',
+  contact: 'jacob.moore@heartwellness.com, 555-8790',
+  image: 'Jacob.jpeg', 
+  surgicalOutcomes: {
+    easy: '92% success rate',
+    medium: '90% success rate',
+    hard: '88% success rate'
+  }
+},
+{ 
+  id: 17, 
+  name: 'Dr. Ava Thompson', 
+  specialization: 'Pediatrics',
+  description: 'Dr. Ava is a caring pediatrician with 13 years of experience, specializing in child healthcare and development. Her expertise and gentle approach make her a trusted healthcare provider for families.',
+  experience: 13,
+  education: 'M.D., Columbia University',
+  contact: 'ava.thompson@childrensclinic.com, 555-7014',
+  image: 'Ava.jpeg', 
+  surgicalOutcomes: {
+    easy: '74% success rate',
+    medium: '70% success rate',
+    hard: '80% success rate'
+  }
+},
+{ 
+  id: 18, 
+  name: 'Dr. Liam Clark', 
+  specialization: 'Endocrinology',
+  description: 'Dr. Liam is a skilled endocrinologist with 20 years of experience, focusing on hormonal disorders and diabetes management. His patient-centered approach and expertise in endocrine care ensure optimal health outcomes for his patients.',
+  experience: 20,
+  education: 'M.D., University of Chicago',
+  contact: 'liam.clark@endocarecenter.com, 555-5687',
+  image: 'Liam.jpeg', 
+  surgicalOutcomes: {
+    easy: '84% success rate',
+    medium: '84% success rate',
+    hard: '89% success rate'
+  }
+},
+{ 
+  id: 19, 
+  name: 'Dr. Zoe King', 
+  specialization: 'Cardiology',
+  description: 'Dr. Zoe is a dedicated cardiologist with 16 years of experience, specializing in advanced cardiac interventions and treatments. Her expertise and commitment to patient care ensure the best outcomes for heart patients.',
+  experience: 16,
+  education: 'M.D., University of Michigan',
+  contact: 'zoe.king@cardiovascularcenter.com, 555-4576',
+  image: 'Zoe.jpeg', 
+  surgicalOutcomes: {
+    easy: '94% success rate',
+    medium: '92% success rate',
+    hard: '90% success rate'
+  }
+},
+{ 
+  id: 20, 
+  name: 'Dr. Lucas Anderson', 
+  specialization: 'Oncology',
+  description: 'Dr. Lucas is an experienced oncologist with 21 years of practice, specializing in cancer diagnosis and treatment. His compassiona',
+  experience: 21,
+  education: 'M.D., University of Texas',
+  contact: 'lucas.anderson@cancercenter.com, 555-6832',
+  image: 'Lucas.jpeg', 
+  surgicalOutcomes: {
+    easy: '84% success rate',
+    medium: '80% success rate',
+    hard: '75% success rate'
+  }
+}
+
+      // Add more doctor data as needed
+    ];
+    
+    var patientsData = [
+  { id: 1, year: 2019, count: 500 },
+  { id: 1, year: 2020, count: 600 },
+  { id: 1, year: 2021, count: 700 },
+  { id: 1, year: 2022, count: 800 },
+  { id: 1, year: 2023, count: 900 },
+  { id: 2, year: 2019, count: 550 },
+  { id: 2, year: 2020, count: 650 },
+  { id: 2, year: 2021, count: 500 },
+  { id: 2, year: 2022, count: 850 },
+  { id: 2, year: 2023, count: 950 },
+  { id: 3, year: 2019, count: 480 },
+  { id: 3, year: 2020, count: 580 },
+  { id: 3, year: 2021, count: 680 },
+  { id: 3, year: 2022, count: 780 },
+  { id: 3, year: 2023, count: 880 },
+  { id: 4, year: 2019, count: 520 },
+  { id: 4, year: 2020, count: 620 },
+  { id: 4, year: 2021, count: 720 },
+  { id: 4, year: 2022, count: 820 },
+  { id: 4, year: 2023, count: 920 },
+  { id: 5, year: 2019, count: 490 },
+  { id: 5, year: 2020, count: 590 },
+  { id: 5, year: 2021, count: 690 },
+  { id: 5, year: 2022, count: 500 },
+  { id: 5, year: 2023, count: 890 },
+  { id: 6, year: 2019, count: 530 },
+  { id: 6, year: 2020, count: 630 },
+  { id: 6, year: 2021, count: 730 },
+  { id: 6, year: 2022, count: 830 },
+  { id: 6, year: 2023, count: 930 },
+  { id: 7, year: 2019, count: 510 },
+  { id: 7, year: 2020, count: 610 },
+  { id: 7, year: 2021, count: 910 },
+  { id: 7, year: 2022, count: 810 },
+  { id: 7, year: 2023, count: 910 },
+  { id: 8, year: 2019, count: 540 },
+  { id: 8, year: 2020, count: 640 },
+  { id: 8, year: 2021, count: 740 },
+  { id: 8, year: 2022, count: 840 },
+  { id: 8, year: 2023, count: 940 },
+  { id: 9, year: 2019, count: 570 },
+  { id: 9, year: 2020, count: 670 },
+  { id: 9, year: 2021, count: 770 },
+  { id: 9, year: 2022, count: 700 },
+  { id: 9, year: 2023, count: 970 },
+  { id: 10, year: 2019, count: 560 },
+  { id: 10, year: 2020, count: 660 },
+  { id: 10, year: 2021, count: 760 },
+  { id: 10, year: 2022, count: 860 },
+  { id: 10, year: 2023, count: 960 },
+  { id: 11, year: 2019, count: 480 },
+  { id: 11, year: 2020, count: 520 },
+  { id: 11, year: 2021, count: 580 },
+  { id: 11, year: 2022, count: 640 },
+  { id: 11, year: 2023, count: 700 },
+  { id: 12, year: 2019, count: 380 },
+  { id: 12, year: 2020, count: 420 },
+  { id: 12, year: 2021, count: 460 },
+  { id: 12, year: 2022, count: 500 },
+  { id: 12, year: 2023, count: 540 },
+  { id: 13, year: 2019, count: 620 },
+  { id: 13, year: 2020, count: 700 },
+  { id: 13, year: 2021, count: 780 },
+  { id: 13, year: 2022, count: 860 },
+  { id: 13, year: 2023, count: 940 },
+  { id: 14, year: 2019, count: 720 },
+  { id: 14, year: 2020, count: 800 },
+  { id: 14, year: 2021, count: 880 },
+  { id: 14, year: 2022, count: 960 },
+  { id: 14, year: 2023, count: 1040 },
+  { id: 15, year: 2019, count: 580 },
+  { id: 15, year: 2020, count: 660 },
+  { id: 15, year: 2021, count: 740 },
+  { id: 15, year: 2022, count: 820 },
+  { id: 15, year: 2023, count: 900 },
+  { id: 16, year: 2019, count: 680 },
+  { id: 16, year: 2020, count: 760 },
+  { id: 16, year: 2021, count: 840 },
+  { id: 16, year: 2022, count: 920 },
+  { id: 16, year: 2023, count: 1000 },
+  { id: 17, year: 2019, count: 480 },
+  { id: 17, year: 2020, count: 560 },
+  { id: 17, year: 2021, count: 640 },
+  { id: 17, year: 2022, count: 720 },
+  { id: 17, year: 2023, count: 800 },
+  { id: 18, year: 2019, count: 620 },
+  { id: 18, year: 2020, count: 700 },
+  { id: 18, year: 2021, count: 780 },
+  { id: 18, year: 2022, count: 860 },
+  { id: 18, year: 2023, count: 940 },
+  { id: 19, year: 2019, count: 540 },
+  { id: 19, year: 2020, count: 600 },
+  { id: 19, year: 2021, count: 660 },
+  { id: 19, year: 2022, count: 720 },
+  { id: 19, year: 2023, count: 780 },
+  { id: 20, year: 2019, count: 800 },
+  { id: 20, year: 2020, count: 880 },
+  { id: 20, year: 2021, count: 960 },
+  { id: 20, year: 2022, count: 1040 },
+  { id: 20, year: 2023, count: 1120 }
+
+];
+
+// Function to calculate and display the graph
+function displayPatientsGraph(doctorId) {
+  // Filter patient data for the specific doctor
+  var doctorPatients = patientsData.filter(patient => patient.id === parseInt(doctorId));
+
+  // Extract unique years and counts for the graph
+  var yearsSet = new Set(doctorPatients.map(patient => patient.year));
+  var years = Array.from(yearsSet).sort((a, b) => a - b);
+  var counts = years.map(year => {
+    var patientsForYear = doctorPatients.filter(patient => patient.year === year);
+    return patientsForYear.reduce((sum, patient) => sum + patient.count, 0);
+  });
+
+  // Get the canvas element and initialize the chart
+  var ctx = document.getElementById('patientsGraph').getContext('2d');
+  var patientsChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: years.map(year => year.toString()),
+      datasets: [{
+        label: 'Number of Patients Treated',
+        data: counts,
+        backgroundColor: 'rgba(54, 162, 235, 0.5)', // Blue color with transparency
+        borderColor: 'rgba(54, 162, 235, 1)', // Solid blue border
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true // Start y-axis at 0
+        }
+      }
+    }
+  });
+}
+   // Function to navigate to the reviews page
+   // Function to navigate to the reviews page with the selected doctor's ID
+   function navigateToReviews(doctorId, doctorName) {
+  const encodedDoctorName = encodeURIComponent(doctorName); // Encode the doctor name for URL
+  window.location.href = `review.html?id=${doctorId}&name=${encodedDoctorName}`;
+}
+
+    // Function to fetch doctor data based on ID
+function fetchDoctorById(doctorId) {
+  return new Promise((resolve, reject) => {
+    const doctor = doctorsData.find(doc => doc.id.toString() === doctorId);
+    if (doctor) {
+      resolve(doctor);
+    } else {
+      reject(new Error('Doctor not found'));
+    }
+  });
+}
+    // Function to fetch doctor data based on ID
+    function displayDoctorDetails(doctor) {
+  var doctorInfoContainer = document.getElementById('doctor-info');
+  doctorInfoContainer.innerHTML = `
+    <h1>${doctor.name}</h1>
+    <img src="${doctor.image}" alt="${doctor.name}" class="doctor-photo">
+    <p><strong>Specialization:</strong> ${doctor.specialization}</p>
+    <p><strong>Description:</strong> ${doctor.description}</p>
+    <p><strong>Experience:</strong> ${doctor.experience} years</p>
+    <p><strong>Education:</strong> ${doctor.education}</p>
+    <p><strong>Contact:</strong> <a href="tel:${doctor.contact}">${doctor.contact}</a></p>
+    <h2>Surgical Outcomes Analysis:</h2>
+    <p><strong>Easy Surgeries:</strong> ${doctor.surgicalOutcomes.easy}</p>
+    <p><strong>Medium Surgeries:</strong> ${doctor.surgicalOutcomes.medium}</p>
+    <p><strong>Hard Surgeries:</strong> ${doctor.surgicalOutcomes.hard}</p>
+  `;
+
+  // Create a "Read Reviews" link
+  const readReviewsLink = document.createElement('a');
+  readReviewsLink.href = '#';
+  readReviewsLink.textContent = 'Read Reviews';
+  readReviewsLink.classList.add('read-reviews-link');
+  readReviewsLink.addEventListener('click', () => {
+    navigateToReviews(doctor.id, doctor.name);
+  });
+
+  doctorInfoContainer.appendChild(readReviewsLink);
+}
+
+    // Extract doctor ID from the URL parameter
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const doctorId = urlParams.get('id');
+
+console.log('Doctor ID:', doctorId); // Add this line for debugging
+
+// Check if doctorId is valid and fetch/display doctor details
+if (doctorId !== null && doctorId !== '') {
+  fetchDoctorById(doctorId)
+    .then(doctor => {
+      displayDoctorDetails(doctor);
+      displayPatientsGraph(doctorId); // Display the graph
+    })
+    .catch(error => {
+      console.error(error.message);
+      document.getElementById('doctor-info').innerText = 'Error: Doctor not found.';
+    });
+} else {
+  document.getElementById('doctor-info').innerText = 'Error: Doctor ID not provided.';
+}
+
+  </script>
+</body>
+
+</html> 

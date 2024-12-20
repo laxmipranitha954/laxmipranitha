@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Reviews</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f8f8;
+    }
+
+    .review-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .review-header {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .review-content {
+      margin-bottom: 15px;
+    }
+
+    .review-rating {
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    .review-stars {
+      display: inline-block;
+      font-size: 24px;
+      color: gold;
+    }
+
+    .review-form {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group button {
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overall-rating" id="overall-rating">
+    <h2>Overall Rating</h2>
+    <p><strong>Average Rating:</strong> <span id="average-rating">4.5</span>/5</p>
+    <!-- You can display other overall rating information here -->
+  </div>
+
+  <div id="reviews-list">
+    <!-- Reviews will be dynamically added here -->
+  </div>
+
+  <!-- Review Form -->
+  <div class="review-form">
+    <h2>Add a New Review</h2>
+    <form id="new-review-form">
+      <div class="form-group">
+        <label for="username">Your Name:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating (out of 5):</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required>
+      </div>
+      <div class="form-group">
+        <label for="review">Review:</label>
+        <textarea id="review" name="review" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit Review</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Load reviews from localStorage on page load
+    window.addEventListener('load', function () {
+      loadReviews();
+    });
+
+    // Function to load reviews from localStorage
+    function loadReviews() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const doctorId = urlParams.get('id');
+  const doctorName = decodeURIComponent(urlParams.get('name'));
+
+  const savedReviews = JSON.parse(localStorage.getItem('doctorReviews')) || [];
+  const reviewsList = document.getElementById('reviews-list');
+  reviewsList.innerHTML = '';
+
+  savedReviews.forEach(function (reviewData) {
+    if (reviewData.doctorName === doctorName) {
+      const reviewContainer = createReviewElement(reviewData);
+      reviewsList.appendChild(reviewContainer);
+    }
+  });
+
+  // Update average rating based on loaded reviews
+  updateAverageRating(doctorName);
+}
+
+    // Function to create a review element
+    function createReviewElement(reviewData) {
+      const reviewContainer = document.createElement('div');
+      reviewContainer.classList.add('review-container');
+      reviewContainer.innerHTML = `
+        <h2 class="review-header">${reviewData.username}'s Review</h2>
+        <p class="review-rating">Rating: ${reviewData.rating}/5</p>
+        <div class="review-stars">${getStarRating(reviewData.rating)}</div>
+        <p class="review-content">${reviewData.review}</p>
+      `;
+      return reviewContainer;
+    }
+
+    // Function to generate star rating based on the given rating number
+    function getStarRating(rating) {
+      const roundedRating = Math.round(parseFloat(rating));
+      let stars = '';
+      for (let i = 0; i < roundedRating; i++) {
+        stars += '★'; // Unicode character for star
+      }
+      return stars;
+    }
+
+    document.getElementById('new-review-form').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const doctorName = decodeURIComponent(urlParams.get('name'));
+
+  const username = document.getElementById('username').value;
+  const rating = document.getElementById('rating').value;
+  const review = document.getElementById('review').value;
+  const newReviewData = {
+    username: username,
+    rating: rating,
+    review: review,
+  };
+
+  // Clear form fields
+  document.getElementById('username').value = '';
+  document.getElementById('rating').value = '';
+  document.getElementById('review').value = '';
+
+  // Save new review to localStorage
+  saveReview(newReviewData, doctorName);
+
+  // Create new review element
+  const newReviewContainer = createReviewElement(newReviewData);
+
+  // Append new review to reviews list
+  document.getElementById('reviews-list').appendChild(newReviewContainer);
+
+  // Update average rating
+  updateAverageRating(doctorName);
+});
+
+    // Function to save review to localStorage
+    function saveReview(reviewData, doctorName) {
+  const savedReviews = JSON.parse(localStorage.getItem('doctorReviews')) || [];
+  reviewData.doctorName = doctorName;
+  savedReviews.push(reviewData);
+  localStorage.setItem('doctorReviews', JSON.stringify(savedReviews));
+}
+
+    // Function to update average rating
+    function updateAverageRating(doctorName) {
+  const savedReviews = JSON.parse(localStorage.getItem('doctorReviews')) || [];
+  const doctorReviews = savedReviews.filter(review => review.doctorName === doctorName);
+
+  if (doctorReviews.length === 0) {
+    document.getElementById('average-rating').textContent = '0';
+    return;
+  }
+  let totalRating = 0;
+  doctorReviews.forEach(function (reviewData) {
+    totalRating += parseInt(reviewData.rating);
+  });
+  const averageRating = totalRating / doctorReviews.length;
+  document.getElementById('average-rating').textContent = averageRating.toFixed(1);
+}
+  </script>
+</body>
+
+</html>

@@ -7,6 +7,7 @@ Welcome to my GitHub! 👩‍💻
 <p align="right">
   <img src="https://github.com/laxmipranitha954/laxmipranitha/blob/main/images/image.jpeg?raw=true" width="300" />
 </p>
+
 ## About Me
 - 🎓 Master's Student in Computer Science at USF
 - 💻 Passionate about AI, cloud computing, and software development

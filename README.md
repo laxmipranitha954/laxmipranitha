@@ -10,9 +10,9 @@ Welcome to my GitHub! 👩‍💻
 
 ## About Me
 - 🎓🩷 Master's Student in Computer Science at USF
-- 💻 Passionate about AI, cloud computing, and software development
-- 💡 Experienced with Microsoft tech, Azure, and Office 365
-- 🧑‍🍳 Aspiring chef (Warning: might cook up some code and a good meal)
+- 💻👾 Passionate about AI, cloud computing, and software development
+- 💡🌱 Experienced with Microsoft tech, Azure, and Office 365
+- 🧑‍🫕 Aspiring chef (Warning: might cook up some code and a good meal)
 
 ## Projects
 - DocInsight 📊

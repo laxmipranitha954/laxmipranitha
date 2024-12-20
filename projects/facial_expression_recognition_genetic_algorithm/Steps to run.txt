@@ -1,0 +1,1 @@
+How to run projectGo to https://colab.research.google.com/?utm_source=scs-indexdownload.Select the Edition based on your OS.Open Google colab after downloading it.Create a folder and name it accordingly.Upload the input image in google drive.Mount the google drive to the colab.Import the required packages.Run the modules with the input image

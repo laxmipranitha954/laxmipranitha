@@ -19,9 +19,7 @@ Welcome to my GitHub! 👩‍💻
 - Facial Expression Recognition using Evolutionary Algorithm😊😡
 - Medical Image Enhancement using Genetic Algorithm 🏥
 
-## Skills
-
-### Languages and Technologies
+## Technical Skills
 <p align="left">
   <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python" width="50" />
   <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=java&logoColor=white" alt="Java" width="50" />

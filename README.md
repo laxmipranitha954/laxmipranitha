@@ -19,9 +19,9 @@ Welcome to my GitHub! 👩‍💻
 </ul></div>
 
 ## Projects
-- DocInsight 📊
-- Facial Expression Recognition using Evolutionary Algorithm😊😡
-- Medical Image Enhancement using Genetic Algorithm 🏥
+- 📊 DocInsight
+- 😑😡 Facial Expression Recognition using Evolutionary Algorithm
+- 🏥 Medical Image Enhancement using Genetic Algorithm 
 
 ## Technical Skills
 <p align="left">

@@ -4,9 +4,9 @@ Hey there!
 I'm Laxmi Pranitha sareddy, a Computer Science graduate student at University of South Florida. 
 
 Welcome to my GitHub! 👩‍💻
-<p align="right">
-  <img src="https://github.com/laxmipranitha954/laxmipranitha/blob/main/images/image.jpeg?raw=true" width="300" />
-</p>
+<div align="left" style="display: flex; align-items: center;">
+  <img src="https://github.com/laxmipranitha954/laxmipranitha/blob/main/images/image.jpeg?raw=true" alt="Laxmi's Avatar" width="200" style="margin-right: 20px;" />
+  <div>
 
 ## About Me
 - 🎓🩷 Master's Student in Computer Science at USF

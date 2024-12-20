@@ -8,11 +8,15 @@ Welcome to my GitHub! 👩‍💻
   <img src="https://github.com/laxmipranitha954/laxmipranitha/blob/main/images/image.jpeg?raw=true" alt="Laxmi's Avatar" width="200"/>
 </div>
 <div style="display: inline-block; vertical-align: middle; width: 65%; padding-left: 20px;">
-## About Me
-- 🎓🩷 Master's Student in Computer Science at USF
-- 💻👾 Passionate about AI, cloud computing, and software development
-- 💡🌱 Experienced with Microsoft tech, Azure, and Office 365
-- 🧑‍🫕 Aspiring chef (Warning: might cook up some code and a good meal)
+<h3>About Me</h3>
+<ul>
+
+<li> 🎓🩷 Master's Student in Computer Science at USF</li>
+<li> 💻👾 Passionate about AI, cloud computing, and software development</li>
+<li> 💡🌱 Experienced with Microsoft tech, Azure, and Office 365</li>
+<li> 🧑‍🫕 Aspiring chef (Warning: might cook up some code and a good meal)</li>
+
+</ul></div>
 
 ## Projects
 - DocInsight 📊

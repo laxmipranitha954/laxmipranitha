@@ -15,7 +15,7 @@ Welcome to my GitHub! 👩‍💻
 <li> 💻👾 Passionate about AI, cloud computing, and software development</li>
 <li> 💡🌱 Experienced with Microsoft tech, Azure, and Office 365</li>
 <li> 🧑‍🫕 Aspiring chef (Warning: might cook up some code and a good meal)</li>
-<li> See my Cloud Bootcamp projects at https://github.com/laxmitest/cloud-mart"</li>
+<li> 👩🏻‍💻 See my Cloud Bootcamp project at https://github.com/laxmitest/cloud-mart"</li>
 
 </ul></div>
 

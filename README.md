@@ -14,7 +14,7 @@ Welcome to my GitHub! 👩‍💻
 <li> 🎓🩷 Master's Student in Computer Science at USF</li>
 <li> 💻👾 Passionate about AI, cloud computing, and software development</li>
 <li> 💡🌱 Experienced with Microsoft tech, Azure, and Office 365</li>
-<li> 🧑‍🫕 Aspiring chef (Warning: might cook up some code and a good meal)</li>
+<li> Currently working as DevOps Volunteer at HackforLA</li>
 <li> 👩🏻‍💻 See my Cloud Bootcamp project at https://github.com/laxmitest/cloud-mart"</li>
 
 </ul></div>

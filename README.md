@@ -46,7 +46,19 @@ Welcome to my GitHub! 👩‍💻
 
 ## Certifications
 - 🎓 [Microsoft Certified: Azure AI Engineer Associate](https://learn.microsoft.com/api/credentials/share/en-us/LaxmiPranitha-2552/466A5C275574630A?sharingId=32199B0AB3A1CE40)
-- 🔐 [Google Cybersecurity Professional Certificate](https://coursera.org/share/895243fd107b8042f3a4f7d089511ad0)  
+- 🔐 [Google Cybersecurity Professional Certificate](https://coursera.org/share/895243fd107b8042f3a4f7d089511ad0)
+
+## 📊 GitHub Stats
+
+<p align="left">
+  <img src="https://github-readme-stats.vercel.app/api?username=laxmipranitha954&show_icons=true&theme=radical" alt="Laxmi's GitHub stats" />
+</p>
+
+## 🧠 Top Languages
+
+<p align="left">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=laxmipranitha954&layout=compact&theme=radical" alt="Top languages" />
+</p>
   
 ## Contact
 - ✉ Email: [sareddypranitha@gmail.com](mailto:sareddypranitha@gmail.com)

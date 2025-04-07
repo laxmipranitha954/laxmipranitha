@@ -1,7 +1,7 @@
 
 Hey there!
 
-I'm Laxmi Pranitha sareddy, a Computer Science graduate student at University of South Florida. 
+I'm Laxmi Pranitha sareddy, a Computer Science Masters graduate student at University of South Florida. 
 
 Welcome to my GitHub! 👩‍💻
 <div align="left" style="display: inline-block; vertical-align: middle; width: 30%;">

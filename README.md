@@ -44,6 +44,12 @@ Welcome to my GitHub! 👩‍💻
   <img src="https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white" alt="Jupyter" width="50" />
 </p>
 
+## Certifications
+- 🎓 [Microsoft Certified: Azure AI Engineer Associate](https://learn.microsoft.com/api/credentials/share/en-us/LaxmiPranitha-2552/466A5C275574630A?sharingId=32199B0AB3A1CE40)
+- 🔐 [Google Cybersecurity Professional Certificate](https://coursera.org/share/895243fd107b8042f3a4f7d089511ad0)  
+  <img src="https://github.com/laxmipranitha954/laxmipranitha/blob/main/images/google-cyber-cert.png?raw=true" alt="Google Cybersecurity Certificate Badge" width="200"/>
+
+  
 ## Contact
 - ✉ Email: [sareddypranitha@gmail.com](mailto:sareddypranitha@gmail.com)
 - 🔗 LinkedIn: [Laxmi Pranitha Sareddy](https://www.linkedin.com/in/laxmi-pranitha-sareddy/)
